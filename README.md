@@ -15,9 +15,8 @@ A few scripts for the USB rubber ducky from HAK5. The scripts are written in duc
 
 ## ExeWebScript
 > **Note!** Your CMD commands file must be publicly hosted on the web and is by definition not secure.  
-This Rubber Ducky Script executes a custom powershell script that is hosted online.
 
-This script downloads and executes a custom file from the web. Its verry fast as it uses a verry short ducky script. First It types the command for downloading your file in a CMD. After that your file will be executed in the background.
+This Rubber Ducky Script executes a custom powershell script that is hosted online. Host the `powershellScript.txt` or a custom script online and change the locatin in ExeWebScript.duck to that hosted script. 
 
 ## SendSystemInfo
 > **Note!** Your password and emailadress wil be typed in plain text on the victem's computer  
