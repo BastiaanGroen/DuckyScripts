@@ -19,7 +19,7 @@ This Rubber Ducky Script executes a custom powershell script that is hosted onli
 
 This script downloads and executes a custom file from the web. Its verry fast as it uses a verry short ducky script. First It types the command for downloading your file in a CMD. After that your file will be executed in the background.
 
-## SendSystemInfo.duck
+## SendSystemInfo
 > **Note!** Your password and emailadress wil be typed in plain text on the victem's computer  
 
 This script sends the system information from a victim's computer to a specified e-mail address.
