@@ -8,7 +8,8 @@
 
     # ---    Open a webPage    --- #
     $OpenWebPage = $True;
-        $urlNAV = "www.yourWebsite.com/PageToDisplay";  
+        $urlNAV = "www.yourWebsite.com/PageToDisplay";
+        $OpenInFullScreen = $True;
 
     # ---    Show a Pop Up     --- #
     $ShowPopUp = $False;
@@ -16,7 +17,6 @@
     # --- Send a API POST call --- #
     $SendPostToAPI = $True;
         $urlAPI = "www.yourWebsite.com/PostAPI";
-        $OpenInFullScreen = $True;
 
     # ---     Block Mouse      --- #
     $BlockMouse = $True;
@@ -31,7 +31,7 @@
 
 
 try{
-    if(MinimizeWindows){
+    if($MinimizeWindows){
         $shell = New-Object -ComObject "Shell.Application"
         $shell.minimizeall()
     }
