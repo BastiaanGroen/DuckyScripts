@@ -36,10 +36,7 @@ With the `AlternativeExeWebScript.duck` it first opens cmd instead of powershell
 ### Powershell script
 The powershellScript.txt is just as an example of what some 'harmless' things that you could do.  
 It comes with a config for some options.
-```powershell
-#================================
-#            CONFIG 
-#================================     
+```powershell   
 
     $MinimizeWindows = $True;
     $ShowPopUp = $False;
@@ -57,10 +54,9 @@ It comes with a config for some options.
     $SpeakText = $True;
         $TextToSpeak = "Hi. This is a Rubber Ducky";
 
-#===============================
 ```
 
 ## SendSystemInfo
-> **Note!** Your password and emailadress wil be typed in plain text on the victem's computer  
+> **Note!** Your password and emailadress wil be typed in plain text on the victim's computer  
 
 This script sends the system information from a victim's computer to a specified e-mail address.
